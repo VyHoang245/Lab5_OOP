@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.cdstore;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,13 +15,13 @@ import java.util.*;
  * @author vygir
  */
 public class CDStoreFrame extends JFrame {
-
+    
     private JTextField idField, titleField, priceField, yearOfReleaseField;
     private JButton addButton, clearButton, showAllButton;
     private JComboBox collection;
     private JRadioButton rb1, rb2;
     ArrayList<CD> list = new ArrayList<>();
-
+    
     public CDStoreFrame() {
         //init form
         setTitle("Quach Tinh_CD Store");
@@ -78,40 +79,19 @@ public class CDStoreFrame extends JFrame {
         setVisible(true);
         //mainPanel.add(displayButton, BorderLayout.EAST);
         //addButton.addActionListener();
-        this.addButton.addMouseListener(new MouseListener() {
+        addButton.addActionListener(new ActionListener() {            
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1) {
-                    addCD();
-
-                }
-            }
-                
-            @Override
-            public void mousePressed(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-        });
+            public void actionPerformed(ActionEvent e) { 
+                addCD();
+                System.out.print("Successful");
+            }            
+        });        
     }
+
     private void addCD() {
         String id = idField.getText();
         String title = titleField.getText();
-        String collection = (String) this.collection.getItemAt(this.collection.getSelectedIndex()); 
+        String collection = (String) this.collection.getItemAt(this.collection.getSelectedIndex());        
         String type = "";
         if (rb1.isSelected()) {
             type = "VCD";
@@ -127,6 +107,7 @@ public class CDStoreFrame extends JFrame {
         clearFields();
         
     }
+
     private void clearFields() {
         idField.setText("");
         titleField.setText("");
@@ -134,7 +115,7 @@ public class CDStoreFrame extends JFrame {
         yearOfReleaseField.setText("");
     }
     String fileName = "CD.dat";
-
+    
     private void saveCD() {
         try {
             FileOutputStream f = new FileOutputStream(fileName);
@@ -145,7 +126,7 @@ public class CDStoreFrame extends JFrame {
             System.out.println("Error save file" + e.getMessage());
         }
     }
-
+    
     private void loadCD() {
         try {
             FileInputStream f = new FileInputStream(fileName);
@@ -157,10 +138,7 @@ public class CDStoreFrame extends JFrame {
         } catch (IOException e) {
             System.out.println("Error load file");
         }
-
+        
     }
-
-        }
-
-
-
+    
+}

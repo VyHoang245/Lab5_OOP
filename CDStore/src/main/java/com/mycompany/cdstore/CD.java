@@ -4,13 +4,14 @@
  */
 package com.mycompany.cdstore;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author Student
  */
-public class CD {
+public class CD implements Serializable{
 
     private String id;
     private String collection;

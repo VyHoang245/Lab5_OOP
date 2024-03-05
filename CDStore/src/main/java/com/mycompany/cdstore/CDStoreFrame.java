@@ -103,7 +103,7 @@ public class CDStoreFrame extends JFrame {
         String year = yearOfReleaseField.getText();
         CD cd = new CD(id, collection, type, title, price, year);
         list.add(cd);
-        saveCD();
+        saveCD(list);
         clearFields();
         
     }
@@ -114,9 +114,9 @@ public class CDStoreFrame extends JFrame {
         priceField.setText("");
         yearOfReleaseField.setText("");
     }
-    String fileName = "CD.dat";
+    String fileName = "D:\\CD.dat";
     
-    private void saveCD() {
+    private void saveCD(ArrayList<CD> list) {
         try {
             FileOutputStream f = new FileOutputStream(fileName);
             ObjectOutputStream oStream = new ObjectOutputStream(f);
@@ -127,7 +127,7 @@ public class CDStoreFrame extends JFrame {
         }
     }
     
-    private void loadCD() {
+    private void loadCD(ArrayList<CD> list) {
         try {
             FileInputStream f = new FileInputStream(fileName);
             ObjectInputStream inStream = new ObjectInputStream(f);
